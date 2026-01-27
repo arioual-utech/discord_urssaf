@@ -352,6 +352,15 @@ Dans GitHub > Settings > Secrets and variables > Actions, ajouter :
 | `DISCORD_TOKEN` | Token du bot Discord |
 | `DISCORD_SERVER_ID` | ID du serveur Discord |
 
+### Configuration de l'environnement (pour Apply)
+
+1. Aller dans GitHub > Settings > **Environments**
+2. Créer un environnement `production`
+3. Dans "Deployment protection rules" :
+   - Cocher **"Required reviewers"**
+   - Ajouter les approbateurs
+4. Save protection rules
+
 ### Utilisation
 
 | Événement | Action |
@@ -359,15 +368,14 @@ Dans GitHub > Settings > Secrets and variables > Actions, ajouter :
 | Push sur `main` | Plan automatique |
 | Pull Request | Plan + commentaire sur la PR |
 | Workflow manuel (`plan`) | Plan uniquement |
-| Workflow manuel (`apply`) | Apply les changements |
+| Workflow manuel (`apply`) | Apply avec approbation |
 
 **Pour appliquer les changements :**
 1. Aller dans **Actions** > **Terraform**
 2. Cliquer **"Run workflow"**
 3. Sélectionner `apply` dans le menu déroulant
 4. Cliquer **"Run workflow"**
-
-> Note: L'apply est uniquement disponible via workflow manuel, ce qui garantit une action humaine consciente.
+5. **Approuver** le déploiement dans l'environnement `production`
 
 ## Provider utilisé
 
