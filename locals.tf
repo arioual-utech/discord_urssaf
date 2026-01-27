@@ -120,6 +120,7 @@ locals {
     deny_send                    = 2112             # Bloquer envoi de messages
 
     # --- FORUM / THREADS ---
+    forum_read_only  = 66624       # Voir + historique + réactions (pas d'écriture)
     forum_read_write = 274877975616 # Forum avec threads + historique
 
     # --- RAID LEADER ---
