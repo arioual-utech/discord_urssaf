@@ -161,57 +161,61 @@ resource "discord_channel_permission" "events_text_officier_role_perm" {
 }
 
 # -----------------------------------------------------------------------------
-# Channel: blabla (hérite des permissions de la catégorie)
+# Channel: blabla (synchro avec la catégorie)
 # -----------------------------------------------------------------------------
 
 resource "discord_text_channel" "blabla_text" {
-  server_id = var.server_id
-  name      = "blabla"
-  category  = discord_category_channel.textuel_guilde_cat.id
+  server_id                  = var.server_id
+  name                       = "blabla"
+  category                   = discord_category_channel.textuel_guilde_cat.id
+  sync_perms_with_category   = true
 
   lifecycle {
-    ignore_changes = [position, sync_perms_with_category]
+    ignore_changes = [position]
   }
 }
 
 # -----------------------------------------------------------------------------
-# Channel: blabla-albion (hérite des permissions de la catégorie)
+# Channel: blabla-albion (synchro avec la catégorie)
 # -----------------------------------------------------------------------------
 
 resource "discord_text_channel" "blabla_albion_text" {
-  server_id = var.server_id
-  name      = "blabla-albion"
-  category  = discord_category_channel.textuel_guilde_cat.id
+  server_id                  = var.server_id
+  name                       = "blabla-albion"
+  category                   = discord_category_channel.textuel_guilde_cat.id
+  sync_perms_with_category   = true
 
   lifecycle {
-    ignore_changes = [position, sync_perms_with_category]
+    ignore_changes = [position]
   }
 }
 
 # -----------------------------------------------------------------------------
-# Channel: general (hérite des permissions de la catégorie)
+# Channel: general (synchro avec la catégorie)
 # -----------------------------------------------------------------------------
 
 resource "discord_text_channel" "general_text" {
-  server_id = var.server_id
-  name      = "general"
-  category  = discord_category_channel.textuel_guilde_cat.id
+  server_id                  = var.server_id
+  name                       = "general"
+  category                   = discord_category_channel.textuel_guilde_cat.id
+  sync_perms_with_category   = true
 
   lifecycle {
-    ignore_changes = [position, sync_perms_with_category]
+    ignore_changes = [position]
   }
 }
 
 # -----------------------------------------------------------------------------
-# Channel: bot-musique (hérite des permissions de la catégorie)
+# Channel: bot-musique (synchro avec la catégorie)
 # -----------------------------------------------------------------------------
 
 resource "discord_text_channel" "bot_musique_text" {
-  server_id = var.server_id
-  name      = "bot-musique"
-  category  = discord_category_channel.textuel_guilde_cat.id
+  server_id                  = var.server_id
+  name                       = "bot-musique"
+  category                   = discord_category_channel.textuel_guilde_cat.id
+  sync_perms_with_category   = true
 
   lifecycle {
-    ignore_changes = [position, sync_perms_with_category]
+    ignore_changes = [position]
   }
 }
