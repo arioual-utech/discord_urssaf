@@ -375,34 +375,3 @@ resource "discord_channel_permission" "bot_musique_text_officier_role_perm" {
   allow        = local.perms.staff_view
   deny         = local.perms.none
 }
-
-# -----------------------------------------------------------------------------
-# Channel: test-terraform
-# -----------------------------------------------------------------------------
-
-resource "discord_text_channel" "test_terraform_text" {
-  server_id = var.server_id
-  name      = "test-terraform"
-  category  = discord_category_channel.textuel_guilde_cat.id
-  topic     = "Channel de test Terraform - droits complets pour Membre"
-
-  lifecycle {
-    ignore_changes = [position, sync_perms_with_category]
-  }
-}
-
-resource "discord_channel_permission" "test_terraform_text_everyone_perm" {
-  channel_id   = discord_text_channel.test_terraform_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.everyone
-  allow        = local.perms.none
-  deny         = local.perm_bits.connect
-}
-
-resource "discord_channel_permission" "test_terraform_text_membre_perm" {
-  channel_id   = discord_text_channel.test_terraform_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.membre
-  allow        = local.perms.text_all
-  deny         = local.perms.none
-}
