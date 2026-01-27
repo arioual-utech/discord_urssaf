@@ -66,14 +66,6 @@ resource "discord_voice_channel" "cr_er_votre_salon_voice" {
   }
 }
 
-resource "discord_channel_permission" "cr_er_votre_salon_voice_everyone_role_perm" {
-  channel_id   = discord_voice_channel.cr_er_votre_salon_voice.id
-  type         = "role"
-  overwrite_id = local.role_ids.everyone
-  allow        = local.perm_bits.view_channel
-  deny         = local.perms.none
-}
-
 resource "discord_channel_permission" "cr_er_votre_salon_voice_membre_role_perm" {
   channel_id   = discord_voice_channel.cr_er_votre_salon_voice.id
   type         = "role"
