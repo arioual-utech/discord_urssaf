@@ -161,7 +161,7 @@ resource "discord_channel_permission" "events_text_officier_role_perm" {
 }
 
 # -----------------------------------------------------------------------------
-# Channel: blabla
+# Channel: blabla (hérite des permissions de la catégorie)
 # -----------------------------------------------------------------------------
 
 resource "discord_text_channel" "blabla_text" {
@@ -174,48 +174,8 @@ resource "discord_text_channel" "blabla_text" {
   }
 }
 
-resource "discord_channel_permission" "blabla_text_everyone_role_perm" {
-  channel_id   = discord_text_channel.blabla_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.everyone
-  allow        = local.perms.none
-  deny         = local.perms.deny_view
-}
-
-resource "discord_channel_permission" "blabla_text_membre_role_perm" {
-  channel_id   = discord_text_channel.blabla_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.membre
-  allow        = local.perms.staff_view
-  deny         = local.perms.none
-}
-
-resource "discord_channel_permission" "blabla_text_gm_role_perm" {
-  channel_id   = discord_text_channel.blabla_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.gm
-  allow        = local.perms.staff_view
-  deny         = local.perms.none
-}
-
-resource "discord_channel_permission" "blabla_text_copain_role_perm" {
-  channel_id   = discord_text_channel.blabla_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.copain
-  allow        = local.perms.text_read_write
-  deny         = local.perms.none
-}
-
-resource "discord_channel_permission" "blabla_text_officier_role_perm" {
-  channel_id   = discord_text_channel.blabla_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.officier
-  allow        = local.perms.staff_view
-  deny         = local.perms.none
-}
-
 # -----------------------------------------------------------------------------
-# Channel: blabla-albion
+# Channel: blabla-albion (hérite des permissions de la catégorie)
 # -----------------------------------------------------------------------------
 
 resource "discord_text_channel" "blabla_albion_text" {
@@ -228,48 +188,8 @@ resource "discord_text_channel" "blabla_albion_text" {
   }
 }
 
-resource "discord_channel_permission" "blabla_albion_text_everyone_role_perm" {
-  channel_id   = discord_text_channel.blabla_albion_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.everyone
-  allow        = local.perms.none
-  deny         = local.perms.deny_view
-}
-
-resource "discord_channel_permission" "blabla_albion_text_membre_role_perm" {
-  channel_id   = discord_text_channel.blabla_albion_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.membre
-  allow        = local.perms.staff_view
-  deny         = local.perms.none
-}
-
-resource "discord_channel_permission" "blabla_albion_text_gm_role_perm" {
-  channel_id   = discord_text_channel.blabla_albion_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.gm
-  allow        = local.perms.staff_view
-  deny         = local.perms.none
-}
-
-resource "discord_channel_permission" "blabla_albion_text_copain_role_perm" {
-  channel_id   = discord_text_channel.blabla_albion_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.copain
-  allow        = local.perms.text_read_write
-  deny         = local.perms.none
-}
-
-resource "discord_channel_permission" "blabla_albion_text_officier_role_perm" {
-  channel_id   = discord_text_channel.blabla_albion_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.officier
-  allow        = local.perms.staff_view
-  deny         = local.perms.none
-}
-
 # -----------------------------------------------------------------------------
-# Channel: general
+# Channel: general (hérite des permissions de la catégorie)
 # -----------------------------------------------------------------------------
 
 resource "discord_text_channel" "general_text" {
@@ -282,48 +202,8 @@ resource "discord_text_channel" "general_text" {
   }
 }
 
-resource "discord_channel_permission" "general_text_everyone_role_perm" {
-  channel_id   = discord_text_channel.general_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.everyone
-  allow        = local.perms.none
-  deny         = local.perms.deny_view
-}
-
-resource "discord_channel_permission" "general_text_membre_role_perm" {
-  channel_id   = discord_text_channel.general_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.membre
-  allow        = local.perms.staff_view
-  deny         = local.perms.none
-}
-
-resource "discord_channel_permission" "general_text_gm_role_perm" {
-  channel_id   = discord_text_channel.general_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.gm
-  allow        = local.perms.staff_view
-  deny         = local.perms.none
-}
-
-resource "discord_channel_permission" "general_text_copain_role_perm" {
-  channel_id   = discord_text_channel.general_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.copain
-  allow        = local.perms.text_read_write
-  deny         = local.perms.none
-}
-
-resource "discord_channel_permission" "general_text_officier_role_perm" {
-  channel_id   = discord_text_channel.general_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.officier
-  allow        = local.perms.staff_view
-  deny         = local.perms.none
-}
-
 # -----------------------------------------------------------------------------
-# Channel: bot-musique
+# Channel: bot-musique (hérite des permissions de la catégorie)
 # -----------------------------------------------------------------------------
 
 resource "discord_text_channel" "bot_musique_text" {
@@ -334,44 +214,4 @@ resource "discord_text_channel" "bot_musique_text" {
   lifecycle {
     ignore_changes = [position, sync_perms_with_category]
   }
-}
-
-resource "discord_channel_permission" "bot_musique_text_everyone_role_perm" {
-  channel_id   = discord_text_channel.bot_musique_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.everyone
-  allow        = local.perms.none
-  deny         = local.perms.deny_view
-}
-
-resource "discord_channel_permission" "bot_musique_text_membre_role_perm" {
-  channel_id   = discord_text_channel.bot_musique_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.membre
-  allow        = local.perms.staff_view
-  deny         = local.perms.none
-}
-
-resource "discord_channel_permission" "bot_musique_text_gm_role_perm" {
-  channel_id   = discord_text_channel.bot_musique_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.gm
-  allow        = local.perms.staff_view
-  deny         = local.perms.none
-}
-
-resource "discord_channel_permission" "bot_musique_text_copain_role_perm" {
-  channel_id   = discord_text_channel.bot_musique_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.copain
-  allow        = local.perms.text_read_write
-  deny         = local.perms.none
-}
-
-resource "discord_channel_permission" "bot_musique_text_officier_role_perm" {
-  channel_id   = discord_text_channel.bot_musique_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.officier
-  allow        = local.perms.staff_view
-  deny         = local.perms.none
 }
