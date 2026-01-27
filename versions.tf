@@ -1,4 +1,13 @@
 terraform {
+  required_version = ">= 1.0"
+
+  cloud {
+    organization = "arioual"
+    workspaces {
+      name = "discord-urssaf"
+    }
+  }
+
   required_providers {
     discord = {
       source  = "zp-forks/discord"
