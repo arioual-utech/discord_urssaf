@@ -3,9 +3,10 @@
 *.tfstate.*
 *.tfvars
 .terraform/
-.terraform.lock.hcl
+# .terraform.lock.hcl - Committé pour reproductibilité
 crash.log
 crash.*.log
+tfplan
 
 # Override files
 override.tf

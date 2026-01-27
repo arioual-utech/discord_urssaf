@@ -339,6 +339,40 @@ resource "discord_channel_permission" "general_text_membre_role_perm" {
    terraform apply
    ```
 
+## GitHub Actions (CI/CD)
+
+Le projet inclut un workflow GitHub Actions pour automatiser Terraform.
+
+### Configuration des secrets
+
+Dans GitHub > Settings > Secrets and variables > Actions, ajouter :
+
+| Secret | Description |
+|--------|-------------|
+| `DISCORD_TOKEN` | Token du bot Discord |
+| `DISCORD_SERVER_ID` | ID du serveur Discord |
+
+### Configuration de l'environnement (pour Apply)
+
+1. Aller dans GitHub > Settings > Environments
+2. Créer un environnement `production`
+3. Activer "Required reviewers" et ajouter les approbateurs
+4. (Optionnel) Restreindre aux branches `main`
+
+### Utilisation
+
+| Événement | Action |
+|-----------|--------|
+| Push sur `main` | Plan automatique |
+| Pull Request | Plan + commentaire sur la PR |
+| Workflow manuel | Plan ou Apply (avec approbation) |
+
+**Pour appliquer les changements :**
+1. Aller dans Actions > Terraform
+2. "Run workflow"
+3. Sélectionner `apply`
+4. Approuver dans l'environnement `production`
+
 ## Provider utilisé
 
 - [zp-forks/discord](https://registry.terraform.io/providers/zp-forks/discord/latest) ~> 3.1.0
