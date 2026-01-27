@@ -96,7 +96,7 @@ jobs:
         run: exit 1
 
   # ==========================================================================
-  # TERRAFORM APPLY - Manuel avec approbation
+  # TERRAFORM APPLY - Manuel uniquement (workflow_dispatch)
   # ==========================================================================
   apply:
     name: Terraform Apply
@@ -104,11 +104,8 @@ jobs:
     needs: plan
     if: |
       github.ref == 'refs/heads/main' && 
-      (github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'apply')
-    
-    environment:
-      name: production
-      url: https://discord.com/channels/${{ secrets.DISCORD_SERVER_ID }}
+      github.event_name == 'workflow_dispatch' && 
+      github.event.inputs.action == 'apply'
 
     steps:
       - name: Checkout
@@ -129,3 +126,6 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
+      
+      - name: Summary
+        run: echo "✅ Terraform Apply completed successfully" >> $GITHUB_STEP_SUMMARY
