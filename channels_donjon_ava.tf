@@ -17,7 +17,7 @@ resource "discord_channel_permission" "donjon_ava_cat_membre_role_perm" {
   type         = "role"
   overwrite_id = local.role_ids.membre
   allow        = local.perms.forum_read_only
-  deny         = local.perms.none
+  deny         = local.perms.forum_deny_post
 }
 
 resource "discord_channel_permission" "donjon_ava_cat_copain_role_perm" {
@@ -25,7 +25,7 @@ resource "discord_channel_permission" "donjon_ava_cat_copain_role_perm" {
   type         = "role"
   overwrite_id = local.role_ids.copain
   allow        = local.perms.forum_read_only
-  deny         = local.perms.none
+  deny         = local.perms.forum_deny_post
 }
 
 # -----------------------------------------------------------------------------
