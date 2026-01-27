@@ -37,41 +37,18 @@ resource "discord_channel_permission" "staff_cat_officier_role_perm" {
 }
 
 # -----------------------------------------------------------------------------
-# Channel: les-percepteurs
+# Channel: les-percepteurs (synchro avec la catégorie)
 # -----------------------------------------------------------------------------
 
 resource "discord_text_channel" "les_percepteurs_text" {
-  server_id = var.server_id
-  name      = "les-percepteurs"
-  category  = discord_category_channel.staff_cat.id
+  server_id                = var.server_id
+  name                     = "les-percepteurs"
+  category                 = discord_category_channel.staff_cat.id
+  sync_perms_with_category = true
 
   lifecycle {
-    ignore_changes = [position, sync_perms_with_category]
+    ignore_changes = [position]
   }
-}
-
-resource "discord_channel_permission" "les_percepteurs_text_everyone_role_perm" {
-  channel_id   = discord_text_channel.les_percepteurs_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.everyone
-  allow        = local.perms.none
-  deny         = local.perms.deny_view
-}
-
-resource "discord_channel_permission" "les_percepteurs_text_gm_role_perm" {
-  channel_id   = discord_text_channel.les_percepteurs_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.gm
-  allow        = local.perms.staff_view
-  deny         = local.perms.none
-}
-
-resource "discord_channel_permission" "les_percepteurs_text_officier_role_perm" {
-  channel_id   = discord_text_channel.les_percepteurs_text.id
-  type         = "role"
-  overwrite_id = local.role_ids.officier
-  allow        = local.perms.staff_view
-  deny         = local.perms.none
 }
 
 # -----------------------------------------------------------------------------

@@ -61,7 +61,7 @@ resource "discord_channel_permission" "contact_with_staff_cat_officier_role_perm
 }
 
 # -----------------------------------------------------------------------------
-# Channel: ticket (text)
+# Channel: ticket (permissions explicites - synchro impossible)
 # -----------------------------------------------------------------------------
 
 resource "discord_text_channel" "ticket_text" {

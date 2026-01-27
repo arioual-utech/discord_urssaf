@@ -24,7 +24,7 @@ resource "discord_channel_permission" "recrutement_cat_incomer_role_perm" {
   channel_id   = discord_category_channel.recrutement_cat.id
   type         = "role"
   overwrite_id = local.role_ids.incomer
-  allow        = local.perms.text_read_write
+  allow        = local.perms.incomer_voice
   deny         = local.perms.none
 }
 
@@ -44,8 +44,16 @@ resource "discord_channel_permission" "recrutement_cat_helper_gg_member_perm" {
   deny         = local.perms.none
 }
 
+resource "discord_channel_permission" "recrutement_cat_membre_role_perm" {
+  channel_id   = discord_category_channel.recrutement_cat.id
+  type         = "role"
+  overwrite_id = local.role_ids.membre
+  allow        = local.perms.voice_no_view
+  deny         = local.perm_bits.view_channel
+}
+
 # -----------------------------------------------------------------------------
-# Channel: recrutement-1 (voice)
+# Channel: recrutement-1 (permissions explicites - synchro impossible pour voice)
 # -----------------------------------------------------------------------------
 
 resource "discord_voice_channel" "recrutement_1_voice" {
@@ -99,7 +107,7 @@ resource "discord_channel_permission" "recrutement_1_voice_helper_gg_member_perm
 }
 
 # -----------------------------------------------------------------------------
-# Channel: recrutement-2 (voice)
+# Channel: recrutement-2 (mêmes permissions que recrutement-1)
 # -----------------------------------------------------------------------------
 
 resource "discord_voice_channel" "recrutement_2_voice" {
@@ -116,15 +124,23 @@ resource "discord_channel_permission" "recrutement_2_voice_everyone_role_perm" {
   channel_id   = discord_voice_channel.recrutement_2_voice.id
   type         = "role"
   overwrite_id = local.role_ids.everyone
-  allow        = local.perm_bits.use_vad
+  allow        = local.perms.none
   deny         = local.perms.deny_view
+}
+
+resource "discord_channel_permission" "recrutement_2_voice_membre_role_perm" {
+  channel_id   = discord_voice_channel.recrutement_2_voice.id
+  type         = "role"
+  overwrite_id = local.role_ids.membre
+  allow        = local.perms.voice_no_view
+  deny         = local.perm_bits.view_channel
 }
 
 resource "discord_channel_permission" "recrutement_2_voice_incomer_role_perm" {
   channel_id   = discord_voice_channel.recrutement_2_voice.id
   type         = "role"
   overwrite_id = local.role_ids.incomer
-  allow        = local.perms.voice_incomer_extended
+  allow        = local.perms.incomer_voice
   deny         = local.perms.none
 }
 
@@ -132,7 +148,7 @@ resource "discord_channel_permission" "recrutement_2_voice_ticket_support_role_p
   channel_id   = discord_voice_channel.recrutement_2_voice.id
   type         = "role"
   overwrite_id = local.role_ids.ticket_support
-  allow        = local.perms.ticket_support
+  allow        = local.perms.staff_view
   deny         = local.perms.none
 }
 
