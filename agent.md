@@ -2,73 +2,47 @@
 
 ## Contexte
 
-Configuration Terraform pour gérer un serveur Discord (guilde Albion Online).
+Configuration Terraform pour gérer un serveur Discord (guilde Albion Online URSSAF).
 
-## Ce qui a été fait
+## Configuration complète
 
-### 1. Structure du projet
+### Infrastructure
 - [x] Rôles Discord dans `roles.tf`
 - [x] Mappings centralisés dans `locals.tf` (role_ids, user_ids, perms, perm_bits)
 - [x] Channels organisés par catégorie (`channels_*.tf`)
-- [x] Documentation complète dans `README.md`
+- [x] Permissions simplifiées (sync avec catégorie quand possible)
 
-### 2. GitHub
-- [x] Repo créé : `git@github.com:arioual-utech/discord_urssaf.git`
-- [x] Repo passé en **public**
-- [x] Secrets configurés : `DISCORD_TOKEN`, `DISCORD_SERVER_ID`
-- [x] Environnement `production` créé avec **required reviewers**
+### Terraform Cloud
+- [x] Organisation : `arioual`
+- [x] Workspace : `discord-urssaf`
+- [x] Variables configurées (`discord_token`, `server_id`)
+- [x] State migré vers Terraform Cloud
 
-### 3. GitHub Actions
-- [x] Workflow `.github/workflows/terraform.yml`
-  - Plan automatique sur push/PR
-  - Apply manuel avec approbation
+### GitHub
+- [x] Repo : `git@github.com:arioual-utech/discord_urssaf.git` (public)
+- [x] Secret `TF_API_TOKEN` configuré
+- [x] Environnement `production` avec required reviewers
+- [x] Workflow CI/CD opérationnel
 
-### 4. Terraform Cloud (TERMINÉ)
-- [x] Organisation créée : `arioual`
-- [x] Backend configuré dans `versions.tf`
-- [x] `terraform login` effectué
-- [x] `terraform init` — state migré vers Terraform Cloud
-- [x] Variables configurées dans Terraform Cloud (`discord_token`, `server_id`)
-- [x] Secret `TF_API_TOKEN` ajouté dans GitHub
-- [ ] **TODO** : Commit et push de la config cloud
-- [ ] **TODO** : Tester le workflow GitHub Actions
+## Permissions simplifiées
 
-## Prochaines étapes après le login
+### Channels synchronisés avec leur catégorie
+- Admin : moderator-only, logs-serveur, images
+- Staff : les-percepteurs
+- Public : rules, patch-notes, bonus-quotidien, public-chat
+- Vocal guilde : Général
+- Textuel guilde : blabla, blabla-albion, general, bot-musique
+- Donjon Ava : events-ava, build-ava
 
-```bash
-# 1. Migrer le state vers Terraform Cloud
-cd /home/mavys/discord
-terraform init
-
-# Répondre "yes" pour migrer le state existant
-
-# 2. Vérifier que ça fonctionne
-terraform plan
-
-# 3. Configurer les variables dans Terraform Cloud
-# Aller sur https://app.terraform.io/app/arioual/workspaces/discord-urssaf/variables
-# Ajouter :
-#   - discord_token (sensitive)
-#   - server_id
-
-# 4. Générer un token API pour GitHub Actions
-# https://app.terraform.io/app/settings/tokens
-# Créer un "Team token" ou "User token"
-# Ajouter comme secret GitHub : TF_API_TOKEN
-
-# 5. Commit et push
-git add .
-git commit -m "Configure Terraform Cloud backend"
-git push
-```
-
-## Fichiers modifiés récemment
-
-- `versions.tf` : Ajout du bloc `cloud {}` pour Terraform Cloud
+### Channels avec permissions explicites
+- Staff : orga-ava (accès AvA RL)
+- Recrutement : recrutement-1, recrutement-2 (vocaux alignés)
+- Contact staff : ticket, vocal (synchro non supportée par provider)
+- Vocal guilde : Créer votre salon, Donjon AvA
+- Textuel guilde : annonces (read-only), events
 
 ## Credentials
 
-- **Discord Token** : Dans `terraform.tfvars` (local) et GitHub Secrets
-- **Server ID** : `1462042124580159531`
 - **Terraform Cloud Org** : `arioual`
 - **Terraform Cloud Workspace** : `discord-urssaf`
+- **Server ID** : `1462042124580159531`
