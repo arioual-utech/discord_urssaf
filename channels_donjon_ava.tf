@@ -28,7 +28,7 @@ resource "discord_channel_permission" "donjon_ava_cat_copain_role_perm" {
   deny         = local.perms.forum_deny_post
 }
 
-resource "discord_channel_permission" "donjon_ava_cat_membre_role_perm" {
+resource "discord_channel_permission" "donjon_ava_cat_ava_rl_role_perm" {
   channel_id   = discord_category_channel.donjon_ava_cat.id
   type         = "role"
   overwrite_id = local.role_ids.ava_rl
